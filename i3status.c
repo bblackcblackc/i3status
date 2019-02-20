@@ -218,7 +218,7 @@ static char *resolve_tilde(const char *path) {
     tail = strchr(path, '/');
     head = strndup(path, tail ? (size_t)(tail - path) : strlen(path));
 
-    int res = glob(head, GLOB_TILDE, NULL, &globbuf);
+    int res = glob(head, 0, NULL, &globbuf);
     free(head);
     /* no match, or many wildcard matches are bad */
     if (res == GLOB_NOMATCH || globbuf.gl_pathc != 1)
